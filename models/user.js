@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
-const crypto = require("crypto");
+const crypto = require('crypto');
  
 //Writing userSchema or structuring the user model to store data in database
 const userSchema = new mongoose.Schema({
@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     },
     encry_password:{
         type:String,
-        required : true
+        require:true
     },
     salt : String,
     role:{
@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
 
 //Setting up a virtual field for password to 
 //directly encrypt it and store in database
-userSchema.virtual('password')
+userSchema.virtual("password")
 .set(function(password){
     this._password = password;
     this.salt = uuidv4();
@@ -65,8 +65,8 @@ userSchema.methods = {
             if(!plainpassword) return "";   
             try{
                 return crypto.createHmac('sha256', this.salt)
-                        .update('plainpassword')
-                        .digest('hex');
+                .update(plainpassword)
+                .digest('hex')
             }catch(err){
                 return "";
             }
