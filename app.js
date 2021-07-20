@@ -9,6 +9,7 @@ const app = express();
 
 //Getting routes from routes folder to use below
 const authRoutes = require("./routes/auth");
+const userRoutes = require('./routes/user')
 
 //Connect to database
 mongoose.connect(process.env.DATABASE, 
@@ -28,6 +29,7 @@ app.use(cors())
 
 //Custom Routes using express router
 app.use("/api",authRoutes);
+app.use("/api",userRoutes);
 
 
 
