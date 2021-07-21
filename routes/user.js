@@ -5,7 +5,7 @@ const {getUserById,getUser,getAllUsers,updateUser,deleteUser,userPurchaseList} =
 
 //user params to get userbyid called only once although 
 //param may appear many times in different routes
-router.param("userId",getUserById)
+router.param("userId",getUserById);
 
 //user routes
 router.get("/user/:userId",isSignedIn,isAuthenticated,getUser);
